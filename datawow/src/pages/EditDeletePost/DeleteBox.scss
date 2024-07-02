@@ -1,0 +1,148 @@
+.deletebox{
+    position: fixed;
+    top: 0;
+    left:0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width:100%;
+    height:100%;
+    .container{
+        position:absolute;
+        top:20%;
+        left:30%;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border-radius: 12px;
+        width:400px;
+        height:248px;
+        padding:30px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        .messagebox{
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width:252px;
+            height:112px;
+            .deleteheader{
+                font-weight: 600;
+            }
+            .deleteinfo{
+                font-weight: 400;
+            }
+        }
+        .cancledelete-btn{
+            width:352px;
+            height:44px;
+            display: flex;
+            gap:12px;
+            align-items: center;
+            justify-content: center;
+            button{
+                width:170px;
+                height: 44px;
+                border-radius: 8px;
+                padding: 10px 18px;
+            }
+            .cancle-btn{
+                border:1px solid lightgray;
+                cursor:pointer;
+                background-color: white;
+
+                &:hover{
+                    background-color: rgb(235, 235, 235);
+                }
+            }
+            .delete-btn{
+                border:1px solid #F23536;
+                cursor:pointer;
+                background-color: #F23536;
+                color:white;
+
+                &:hover{
+                    background-color: #d62f2f;
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width: 768px) {
+    .deletebox{
+        position: fixed;
+        top: 0;
+        left:0;
+        background-color: rgba(0, 0, 0, 0.5);
+        width:100%;
+        height:100%;
+        .container{
+            position:absolute;
+            top:20%;
+            left:20px;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border-radius: 12px;
+            width:303px;
+            height:280px;
+            padding:30px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            .messagebox{
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                width:311px;
+                height:96px;
+                .deleteheader{
+                    font-weight: 600;
+                }
+                .deleteinfo{
+                    font-weight: 400;
+                }
+            }
+            .cancledelete-btn{
+                width:311px;
+                height:100px;
+                display: flex;
+                flex-direction: column-reverse;
+                gap:12px;
+                align-items: center;
+                justify-content: center;
+                button{
+                    width:311px;
+                    height: 44px;
+                    border-radius: 8px;
+                    padding: 10px 18px;
+                }
+                .cancle-btn{
+                    border:1px solid lightgray;
+                    cursor:pointer;
+                    background-color: white;
+    
+                    &:hover{
+                        background-color: rgb(235, 235, 235);
+                    }
+                }
+                .delete-btn{
+                    border:1px solid #F23536;
+                    cursor:pointer;
+                    background-color: #F23536;
+                    color:white;
+    
+                    &:hover{
+                        background-color: #d62f2f;
+                    }
+                }
+            }
+        }
+    
+    }
+}

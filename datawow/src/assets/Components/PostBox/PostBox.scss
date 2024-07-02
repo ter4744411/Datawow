@@ -1,0 +1,143 @@
+.postbox{
+    padding: 20px;
+    display: flex;
+    gap:19px;
+    height: 200px;
+    width:758px;
+    flex-direction: column;
+    border-bottom: 1px solid gray;
+    position:relative;
+    .profile{
+        display: flex;
+        align-items: center;
+        gap:10px;
+        font-size: 14px;
+        font-weight: 500;
+        color:#939494;
+        img{
+            width:31.03px;
+            height:31.03px;
+            border-radius: 50%;
+        }
+    }
+    .history{
+        width:55px;
+        height:24px;
+        border-radius: 16px;
+        padding:4px 8px;
+        color:gray;
+        background-color: #F3F3F3;
+        font-weight: 600;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .post-header{
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .post-info{
+        font-size:12px;
+        font-weight: 400;
+        line-height: 14.52px;
+        height: 100%;
+        
+        
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 3; 
+        text-overflow: ellipsis; 
+    }
+    .comment{
+        color:#939494;
+        font-weight: 400;
+        line-height: 14.52px;
+        font-size: 12px;
+        width:101px;
+        height: 16px;
+        gap:5px;
+    }
+    .EditDelete{
+        position:absolute;
+        right:20px;
+        top:30px;
+        display: flex;
+        gap:15px;
+        font-size:20px;
+        div{
+            cursor: pointer;
+        }
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .postbox{
+        padding: 20px;
+        display: flex;
+        gap:19px;
+        height: 200px;
+        width:303px;
+        flex-direction: column;
+        border-bottom: 1px solid gray;
+        .profile{
+            display: flex;
+            align-items: center;
+            gap:10px;
+            font-size: 14px;
+            font-weight: 500;
+            color:#939494;
+            img{
+                width:31.03px;
+                height:31.03px;
+                border-radius: 50%;
+            }
+        }
+        .history{
+            width:55px;
+            height:24px;
+            border-radius: 16px;
+            padding:4px 8px;
+            color:gray;
+            background-color: #F3F3F3;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .post-header{
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+        }
+        .post-info{
+            font-size:12px;
+            font-weight: 400;
+            line-height: 14.52px;
+            height: 100%;
+            
+            
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 3; 
+            text-overflow: ellipsis; 
+        }
+        .comment{
+            color:#939494;
+            font-weight: 400;
+            line-height: 14.52px;
+            font-size: 12px;
+            width:101px;
+            height: 16px;
+            gap:5px;
+        }
+        
+    }
+}

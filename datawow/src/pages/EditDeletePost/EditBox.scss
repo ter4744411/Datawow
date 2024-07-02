@@ -1,0 +1,283 @@
+.createpost{
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed; /* Fixed position relative to the viewport */
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    .right{
+        display: flex;
+        padding-top: 100px;
+        position:absolute;
+        left:20%;
+        top:10%;
+        .right-box{
+            width:685px;
+            height: 510px;
+            padding: 30px;
+            border-radius: 12px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            position:relative;
+            .postnav{
+                font-weight: bold;
+                display: flex;
+                justify-content: space-between;
+                font-size:20px;
+                span{
+                    font-weight: 600;
+                    font-size:26px;
+                    line-height: 24px;
+                }
+                .x{
+                    cursor: pointer;
+                }
+            }
+            .community{
+                font-weight:600;
+                color:#49A569;
+                border:1px solid #49A569;
+                gap:8px;
+                display: flex;
+                align-items: center;
+                width:195px;
+                height:40px;
+                border-radius: 8px;
+                padding: 10px 16px;
+                cursor: pointer;
+                user-select: none;
+                &:hover{
+                    color: white;
+                    background-color: #439760;
+                }
+            }
+            .title-box{
+                border-radius: 8px;
+                border: 1px solid lightgray;
+                width:626px;
+                height:44px;
+                padding:0px 8px;
+            }
+            
+            .content-box{
+                border-radius: 8px;
+                border: 1px solid lightgray;
+                width:625px;
+                height:234px;
+                position: relative;
+                display: flex;
+                justify-content: right;
+            }
+            .content-box::placeholder{
+                top: 8px;
+                left: 8px;
+                position: absolute;
+            }
+            .footer-btn{
+                display: flex;
+                gap:8px;
+                width:633px;
+                justify-content: right;
+                button{
+                    width:105px;
+                    height:40px;
+                    border-radius: 8px;
+                    padding:10px 16px;
+                }
+                .cancle-btn{
+                    border: 1px solid #49A569;
+                    color:#49A569;
+                    background-color: white;
+                    cursor: pointer;
+
+                    &:hover{
+                        background-color: rgb(234, 234, 234);
+                    }
+                }
+                .post-btn{
+                    color:white;
+                    background-color: #49A569;
+                    border: 1px solid #49A569;
+                    cursor: pointer;
+
+                    &:hover{
+                        background-color: #439760;
+                    }
+                }
+            }
+            .dropdown-menu{
+                position:absolute;
+                display: flex;
+                flex-direction: column;
+                background-color: white;
+                box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
+                bottom: -50px;
+                border-radius: 8px;
+                .beforecheck,.beforeothercheck,.aftercheck,.afterothercheck{
+                    width:320px;
+                    height:44px;
+                    padding: 10px 14px;
+                    border-bottom:1px solid lightgray;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                .beforeothercheck{
+                    border-bottom: none;
+                }
+                .aftercheck,.afterothercheck{
+                    background-color: #D8E9E4;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .createpost{
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        height:900px;
+        width:375px;
+
+        .right{
+            display: flex;
+            padding-top: 80px;
+            justify-content: center;
+            width:375px;
+            left:0;
+            .right-box{
+                width:343px;
+                height: 580px;
+                padding: 20px 0px 20px 10px;
+                border-radius: 12px;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                position:relative;
+                .postnav{
+                    font-weight: bold;
+                    display: flex;
+                    justify-content: space-between;
+                    padding-right: 20px;
+                    font-size:20px;
+                    span{
+                        font-weight: 600;
+                        font-size:24px;
+                        line-height: 24px;
+                    }
+                    .x{
+                        cursor: pointer;
+                    }
+                }
+                .community{
+                    font-weight:600;
+                    color:#49A569;
+                    border:1px solid #49A569;
+                    gap:8px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width:311px;
+                    height:40px;
+                    border-radius: 8px;
+                    padding: 10px 9px;
+                    cursor: pointer;
+                    user-select: none;
+                    &:hover{
+                        color: white;
+                        background-color: #439760;
+                    }
+                }
+                .title-box{
+                    border-radius: 8px;
+                    border: 1px solid lightgray;
+                    width:311px;
+                    height:44px;
+                    padding:0px 8px;
+                }
+                
+                .content-box{
+                    border-radius: 8px;
+                    border: 1px solid lightgray;
+                    width:320px;
+                    height:234px;
+                    position: relative;
+                    display: flex;
+                    justify-content: right;
+                }
+                .content-box::placeholder{
+                    top: 8px;
+                    left: 8px;
+                    position: absolute;
+                }
+                .footer-btn{
+                    display: flex;
+                    gap:8px;
+                    width:633px;
+                    justify-content: right;
+                    flex-direction: column;
+                    button{
+                        margin-left: 8px;
+                        width:311px;
+                        height:40px;
+                        border-radius: 8px;
+                        padding:10px 16px;
+                    }
+                    .cancle-btn{
+                        border: 1px solid #49A569;
+                        color:#49A569;
+                        background-color: white;
+                        cursor: pointer;
+    
+                        &:hover{
+                            background-color: rgb(234, 234, 234);
+                        }
+                    }
+                    .post-btn{
+                        color:white;
+                        background-color: #49A569;
+                        border: 1px solid #49A569;
+                        cursor: pointer;
+    
+                        &:hover{
+                            background-color: #439760;
+                        }
+                    }
+                }
+                .dropdown-menu-mobile{
+                    position:absolute;
+                    display: flex;
+                    flex-direction: column;
+                    background-color: white;
+                    box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
+                    top:150px;
+                    border-radius: 8px;
+                    .beforecheckmobile,.beforeothercheckmobile,.aftercheckmobile,.afterothercheckmobile{
+                        width:300px;
+                        height:44px;
+                        padding: 10px 16px;
+                        border-bottom:1px solid lightgray;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        font-size: 16px;
+                        font-weight: 500;
+                        cursor: pointer;
+                        user-select: none;
+                        
+                    }
+                    .beforeothercheckmobile{
+                        border-bottom: none;
+                    }
+                    .aftercheckmobile,.afterothercheckmobile{
+                        background-color: #D8E9E4;
+                    }
+                }
+            }
+        }
+    }
+}
