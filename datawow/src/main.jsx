@@ -12,6 +12,7 @@ import Homepage from './pages/Homepage/Homepage.jsx';
 import Signin from './pages/Signin/Signin.jsx'
 import CreatePost from './pages/CreatePost/CreatePost.jsx';
 import EditDeletePost from './pages/EditDeletePost/EditDeletePost.jsx';
+import PostDetail from './pages/PostDetail/PostDetail.jsx'
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path:"/editdeletepost",
         element:<EditDeletePost/>,
+      },
+      {
+        path:"/postdetail",
+        element:<PostDetail/>,
       },
     ],
   },

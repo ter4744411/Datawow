@@ -12,7 +12,7 @@ const PostBox = ({username,title,content,comment}) => {
         <span className="history">History</span>
         <span className="post-header">{title}</span>
         <span className="post-info">{content}</span>
-        <span className="comment"><FaRegComment /> {comment}.length Comments</span>
+        <span className="comment"><FaRegComment /> 0 Comments</span>
     </div>
   )
 }

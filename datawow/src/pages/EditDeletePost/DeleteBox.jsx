@@ -1,6 +1,17 @@
 import React from 'react'
 import './DeleteBox.scss'
-const DeleteBox = ({handleCloseDeleteBox}) => {
+import axios from "axios"
+import { Link } from 'react-router-dom'
+const DeleteBox = ({handleCloseDeleteBox,post}) => {
+  const handleSubmitDelete = async () => {
+    try{
+      const {data} = await axios.post("http://localhost:5000/postdelete",{postid:post._id})
+      console.log(data)
+      handleCloseDeleteBox();
+    }catch(error){
+      console.log("delete failed :",error)
+    }
+  }
   return (
     <div className="deletebox">
         <div className="container">
@@ -10,7 +21,7 @@ const DeleteBox = ({handleCloseDeleteBox}) => {
             </div>
             <div className="cancledelete-btn">
                 <button className="cancle-btn" onClick={handleCloseDeleteBox}>Cancle</button>
-                <button className="delete-btn">Delete</button>
+                <Link to="" refresh="true"><button className="delete-btn" onClick={handleSubmitDelete}>Delete</button></Link>
             </div>
         </div>
     </div>

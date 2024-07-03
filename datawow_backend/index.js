@@ -1,4 +1,5 @@
 const express = require("express");
+const { ObjectId } = require('mongodb');
 const cors = require("cors");
 const returnStatus = require("./helper/returnStatus");
 const {getDatabase,client} = require("./helper/connectDB")
@@ -34,23 +35,22 @@ app.get('/currentuserposts', async (req, res) => {
     try {
       const db = await getDatabase();
       const username = req.query.username;
-      console.log(req.body)
+      console.log(req.query.username);
   
       if (!username) {
-        return res.status(400).json({ error: true, message: 'Username is required' });  // Respond with an error if the username is not provided
+        return returnStatus(res,400,true,"No Signin , go signin first")
       }
   
-      // Query the posts collection for the current user's posts
-      const posts = await db.collection('posts').find({ username }).toArray();
+      const posts = await db.collection('post').find({ username }).toArray();
   
       if (posts.length === 0) {
-        return res.status(404).json({ error: true, message: 'No posts found for the given username' });  // Respond with a 404 error if no posts are found
+        return returnStatus(res,400,true,"No post found in this user")
       }
   
-      res.status(200).json({ error: false, message: 'Posts fetched successfully', data: posts });  // Respond with the posts data
+      return returnStatus(res,201,false,"Get Post successful",{posts})
     } catch (error) {
-      console.error('Error fetching posts:', error);  // Log the error
-      res.status(500).json({ error: true, message: 'Internal Server Error' });  // Respond with a 500 error for internal server issues
+      console.error('Error fetching posts:', error);  
+      return returnStatus(res,500,true,"Internal server Error")
     }
   });
 app.get("/posts", async (req, res) => {
@@ -77,34 +77,49 @@ app.get("/posts", async (req, res) => {
   });
   
   
-
-
-app.put("/posts/:id", async (req, res) => {
-    const { id } = req.params;
-    const post = req.body;
-    const result = await postsCollection.findOneAndUpdate(
-        { _id: ObjectId(id) },
-        { $set: post },
-        { returnOriginal: false }
+app.post("/postedit",async (req,res)=>{ //postid , title , content  
+    console.log(req.body)
+    try{
+      const db = await getDatabase();
+      const POST = await db.collection("post").findOneAndUpdate(
+        {_id: new ObjectId(req.body.postid)},
+        {$set:{
+            title:req.body.title,
+            content:req.body.content,
+        },
+    },
+        {
+            returnDocument:"after",
+            projection:{password: 0 },
+            //return the modified document without _id and password
+        }
     );
-    res.send(result.value);
+    if (!POST) {
+      return returnStatus(res, 404, true, "Post not found");
+    }
+    return returnStatus(res, 200, false, "Post Edit successfully");
+    }catch(error){
+      console.log("can not edit post : ",error)
+      return returnStatus(res, 400, true, "Cannot edit posts");
+    }
+  })
+
+app.post("/postdelete", async (req, res) => {
+    try{
+      const db = await getDatabase();
+      const deletepost = await db.collection("post").deleteOne({ _id: new ObjectId(req.body.postid) });
+
+      if (!deletepost){
+        return returnStatus(res, 400, true, "no post");
+      }
+      return returnStatus(res, 200, false, "Post Delete successfully");
+    }catch(error){
+      return returnStatus(res, 400, true, "Cannot Delete posts");
+    }
+
 });
 
 
-app.delete("/posts/:id", async (req, res) => {
-    const { id } = req.params;
-    await postsCollection.deleteOne({ _id: ObjectId(id) });
-    res.send({ message: "Post deleted" });
-});
-
-
-app.post("/posts/:postId/comments", async (req, res) => {
-    const comment = req.body;
-    comment.postId = ObjectId(req.params.postId);
-    comment.timestamp = new Date();
-    const result = await commentsCollection.insertOne(comment);
-    res.send(result.ops[0]);
-});
 app.get("/",(req,res)=>{
     res.send("Hello World");
 });

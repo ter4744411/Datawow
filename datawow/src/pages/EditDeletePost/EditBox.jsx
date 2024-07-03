@@ -5,8 +5,11 @@ import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { IoIosArrowDown } from "react-icons/io";
 import { useMediaQuery } from 'react-responsive';
 import { TiTick } from "react-icons/ti";
+import axios from "axios";
+import { Link } from 'react-router-dom';
 
-const EditBox = ({handleCloseEditBox}) => {
+const EditBox = ({handleCloseEditBox,post}) => {
+
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     const [opencommunity,setOpencommunity] = useState(false);
     const [historycheck,setHistorycheck] = useState(false);
@@ -16,6 +19,19 @@ const EditBox = ({handleCloseEditBox}) => {
     const [fashioncheck,setFashioncheck] = useState(false);
     const [exercisecheck,setExercisecheck] = useState(false);
     const [othercheck,setOthercheck] = useState(false);
+    const [title,setTitle] = useState('');
+    const [content,setContent] = useState('');
+
+    //console.log("selected post from editbox :",post)
+    const handleEdit = async () =>{
+      try{
+        const {data} = await axios.post(`http://localhost:5000/postedit`,{postid:post._id , title , content})
+        console.log(data)
+        handleCloseEditBox();
+      }catch(error){
+        console.error("Edit failed",error)
+      }
+    }
   return (
     <div className="createpost">
       <div className="right">
@@ -29,11 +45,11 @@ const EditBox = ({handleCloseEditBox}) => {
                 <div><IoIosArrowDown /></div>
             </div>
             
-            <input placeholder="Title" className="title-box"/>
-            <input placeholder="What's on your mind...." className="content-box"/>
+            <input placeholder="Title" className="title-box" onChange={(e)=>setTitle(e.target.value)}/>
+            <input placeholder="What's on your mind...." className="content-box" onChange={(e)=>setContent(e.target.value)}/>
             <div className="footer-btn">
                 <button className="cancle-btn" onClick={handleCloseEditBox}>Cancel</button>
-                <button className="post-btn">Post</button>
+                <Link to="" refresh="true"><button className="post-btn" onClick={handleEdit}>Confirm</button></Link>
             </div>
             {opencommunity? 
                     <div className={isMobile ? 'dropdown-menu-mobile' : 'dropdown-menu'} aria-labelledby="dropdownMenuButton">

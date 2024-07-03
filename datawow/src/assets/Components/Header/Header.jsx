@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <div className="app-header">
       <div className="app-header-box">
-        <span>a Board</span>
+        <Link to ="/"><span>a Board</span></Link>
         {isMobile ? (
   <button className="button-icon" onClick={() => setMenuopen(!menuopen)}>
     <IoMenu />

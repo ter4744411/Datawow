@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Homepage.scss'
+import './PostDetail.scss'
 import { RiHome6Line } from "react-icons/ri";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { IoSearchSharp } from "react-icons/io5";
@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from "axios"
 
-const Homepage = () => {
+const PostDetail = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const [opencommunity,setOpencommunity] = useState(false);
   const [historycheck,setHistorycheck] = useState(false);
@@ -97,4 +97,4 @@ const Homepage = () => {
   )
 }
 
-export default Homepage
+export default PostDetail

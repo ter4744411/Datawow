@@ -11,6 +11,7 @@ import EditBox from './EditBox';
 import DeleteBox from './DeleteBox';
 import { useEffect } from 'react';
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
 const EditDeletePost = () => {
   const [posts,setPosts] = useState([])
@@ -26,11 +27,17 @@ const EditDeletePost = () => {
   const [createpost,setCreatepost] = useState(false);
   const [openedit,setOpenedit] = useState(false);
   const [opendelete,setOpendelete] = useState(false);
-  
-  const handleDelete = ()=>{
+  const [editreq,setEditreq] = useState('');
+  const [selectedPost, setSelectedPost] = useState("");
+
+
+  const handleDelete = (post)=>{
+    setSelectedPost(post)
     setOpendelete(true);
   }
-  const handleEdit = () =>{
+
+  const handleEdit = (post) =>{
+      setSelectedPost(post)
       setOpenedit(true);
   }
   const handleCloseEditBox = ()=>{
@@ -42,7 +49,7 @@ const EditDeletePost = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const username = localStorage.getItem('username');  // Get the username from localStorage
+        const username = localStorage.getItem('username'); 
         if (!username) {
           console.error('Username not found in localStorage');
           return;
@@ -53,7 +60,8 @@ const EditDeletePost = () => {
         if (response.data.error) {
           console.error(response.data.message);
         } else {
-          setPosts(response.data.data); 
+          setPosts(response.data.posts); 
+          console.log(posts)
         }
       } catch (error) {
         console.error('Error fetching posts:', error);
@@ -62,6 +70,8 @@ const EditDeletePost = () => {
 
     fetchPosts();
   }, []);
+  console.log(editreq)
+  console.log(selectedPost)
   return (
     <div className="homepage">
       <div className="left">
@@ -89,27 +99,31 @@ const EditDeletePost = () => {
                       <a className={ isMobile? (exercisecheck ? `aftercheckmobile` : `beforecheckmobile`) : (exercisecheck ? `aftercheck` : `beforecheck`)} onClick={()=>setExercisecheck(!exercisecheck)}>Exercise {exercisecheck? <TiTick /> : <></>}</a>
                       <a className={ isMobile? (othercheck ? `aftercheckmobile` : `beforecheckmobile`) : (othercheck ? `afterothercheck` : `beforeothercheck`)} onClick={()=>setOthercheck(!othercheck)}>Others {othercheck? <TiTick /> : <></>}</a>
                   </div> : <></>}
-                  <button>Create +</button>
+                  <Link to ="/createpost"><button>Create +</button></Link>
                 </div>
             </div>
             <div className="right-post">
-            {posts.map((post) => (
+            {posts.map((post,index) => (
+              <>
                 <EditDeletePostBox
-                  key={post._id}
+                  key={index}
+                  postid = {post._id}
                   post={post} 
                   handleEdit={() => handleEdit(post)} 
                   handleDelete={() => handleDelete(post)}  
                 />
+              </>
               ))}
                 
             </div>
             {openedit && (
               <div className="editbox">
-                <EditBox handleCloseEditBox={handleCloseEditBox}/>
+                <EditBox handleCloseEditBox={handleCloseEditBox} post={selectedPost}/>
+                {console.log("slectPost : ",selectedPost)}
               </div>)}
               {opendelete && (
               <div className="deletebox">
-                <DeleteBox handleCloseDeleteBox={handleCloseDeleteBox}/>
+                <DeleteBox handleCloseDeleteBox={handleCloseDeleteBox} post={selectedPost}/>
               </div>)}
         </div>
       </div>
